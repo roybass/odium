@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var fitCtrl = require('../controllers/fit.ctrl');
+const express = require('express');
+const router = express.Router();
+const fitCtrl = require('../controllers/fit.ctrl');
 
 /* GET users listing. */
 router.get('/', fitCtrl.find);
