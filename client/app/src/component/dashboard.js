@@ -88,7 +88,7 @@ class Dashboard extends React.Component {
     open: false,
   };
 
-  handleDrawerOpen = () => {g
+  handleDrawerOpen = () => {
     this.setState({open: true});
   };
 
