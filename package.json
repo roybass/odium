@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "client": "cd client/app && npm start",
+    "dev": "concurrently --kill-others-on-fail \"PORT=5000 npm start\" \"npm run client\""
   },
   "dependencies": {
     "body-parser": "~1.13.2",
@@ -20,5 +22,8 @@
     "passport": "^0.4.0",
     "passport-eveonline-sso": "github:eve-scout/passport-eveonline-sso",
     "serve-favicon": "~2.3.0"
+  },
+  "devDependencies": {
+    "concurrently": "^3.6.1"
   }
 }

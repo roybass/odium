@@ -7,6 +7,7 @@ import SimpleTable from './SimpleTable';
 import Drawer from './drawer';
 import TopBar from './topbar';
 import SearchForm from './search-form';
+import fitService from '../service/fit-service';
 
 const drawerWidth = 200;
 
@@ -85,9 +86,16 @@ const styles = theme => ({
 });
 
 class Dashboard extends React.Component {
-  state = {
-    open: false,
-  };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false,
+      searchResults: null
+    };
+
+    this.handleSearch = this.handleSearch.bind(this);
+  }
 
   handleDrawerOpen = () => {
     this.setState({open: true});
@@ -96,6 +104,18 @@ class Dashboard extends React.Component {
   handleDrawerClose = () => {
     this.setState({open: false});
   };
+
+  handleSearch(params) {
+    const dashboard = this;
+    fitService.getFits(params).then(response => {
+      if (response.status !== 200) {
+        return null;
+      }
+      return response.json();
+    }).then((searchResults) => {
+      dashboard.setState({searchResults});
+    });
+  }
 
   render() {
     const {classes} = this.props;
@@ -113,12 +133,12 @@ class Dashboard extends React.Component {
             <Typography variant="headline" gutterBottom>
               Search
             </Typography>
-            <SearchForm />
+            <SearchForm onClick={this.handleSearch}/>
             <Typography variant="display1" gutterBottom>
               Fits
             </Typography>
             <div className={classes.tableContainer}>
-              <SimpleTable />
+              <SimpleTable data={this.state.searchResults}/>
             </div>
           </main>
         </div>

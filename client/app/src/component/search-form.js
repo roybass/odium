@@ -22,8 +22,24 @@ const styles = theme => ({
 
 class SearchForm extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {ship: ''};
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
   handleClick() {
-    console.log(this.props);
+    if (this.props.onClick) {
+      this.props.onClick(this.state);
+    }
+  }
+
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+    event.preventDefault();
   }
 
   render() {
@@ -32,11 +48,13 @@ class SearchForm extends React.Component {
     return (
       <div className={classes.container}>
         <Input
+          name="ship"
           className={classes.input}
           inputProps={{
             'aria-label': 'Description',
           }}
           placeholder="Ship name"
+          onChange={this.handleChange}
         />
         <span className={classes.space}/>
         <Button variant="outlined" color="primary" onClick={() => this.handleClick()} classes="">
