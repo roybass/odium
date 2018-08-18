@@ -1,5 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import {Tooltip} from '@material-ui/core';
 import classNames from 'classnames';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -9,7 +10,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import LoginIcon from '@material-ui/icons/SentimentDissatisfied';
 
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 
 const styles = theme => ({
   title: {
@@ -64,9 +65,11 @@ class TopBar extends React.Component {
           <Typography variant="title" color="inherit" noWrap className={classes.title}>
             Eve Fitting DB
           </Typography>
-          <IconButton color="inherit">
-            <LoginIcon />
-          </IconButton>
+          <Tooltip title="Login">
+            <IconButton color="inherit">
+              <LoginIcon />
+            </IconButton>
+          </Tooltip>
         </Toolbar>
       </AppBar>
     );

@@ -8,7 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { mainListItems } from './listItems';
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 
 const styles = theme => ({
 

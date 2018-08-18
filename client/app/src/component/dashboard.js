@@ -6,8 +6,9 @@ import Typography from '@material-ui/core/Typography';
 import SimpleTable from './SimpleTable';
 import Drawer from './drawer';
 import TopBar from './topbar';
+import SearchForm from './search-form';
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 
 const styles = theme => ({
   root: {
@@ -112,7 +113,7 @@ class Dashboard extends React.Component {
             <Typography variant="headline" gutterBottom>
               Search
             </Typography>
-
+            <SearchForm />
             <Typography variant="display1" gutterBottom>
               Fits
             </Typography>

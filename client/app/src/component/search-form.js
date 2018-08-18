@@ -1,9 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { Button, Input, Paper } from '@material-ui/core';
+import { Button, Input } from '@material-ui/core';
 
 const styles = theme => ({
+  space: {
+    flexGrow: 1,
+  },
   container: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -25,28 +27,24 @@ class SearchForm extends React.Component {
   }
 
   render() {
+    const {classes} = this.props;
+
     return (
-      <Paper classes="">
-        <div className={this.props.classes.container}>
-          <Input
-            classes=""
-            className={styles.input}
-            inputProps={{
-              'aria-label': 'Description',
-            }}
-            placeholder="Ship name"
-          />
-          <Button variant="outlined" color="primary" onClick={() => this.handleClick()} classes="">
-            Search
-          </Button>
-        </div>
-      </Paper>
+      <div className={classes.container}>
+        <Input
+          className={classes.input}
+          inputProps={{
+            'aria-label': 'Description',
+          }}
+          placeholder="Ship name"
+        />
+        <span className={classes.space}/>
+        <Button variant="outlined" color="primary" onClick={() => this.handleClick()} classes="">
+          Search
+        </Button>
+      </div>
     )
   };
 }
-
-SearchForm.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(SearchForm);
