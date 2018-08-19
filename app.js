@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 const routes = require('./server/routes/index');
 const fit = require('./server/routes/fit');
 const auth = require('./server/auth/auth');
+const mongoose = require('mongoose');
 const app = express();
 
 // view engine setup
@@ -20,7 +21,7 @@ auth.init(app);
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'static')));
 
@@ -58,5 +59,14 @@ app.use(function (err, req, res, next) {
   });
 });
 
+function gracefulShutdown(SIG) {
+  console.log('Trying to exit gracefully...');
+  mongoose.connection.close(() => {
+    console.log('Closed connection to DB');
+    process.kill(process.pid, SIG);
+  });
+}
+// If the Node process ends, close the Mongoose connection
+process.once('SIGUSR2', () => gracefulShutdown('SIGUSR2'));
 
 module.exports = app;

@@ -5,8 +5,11 @@ class FitService {
   getFits(params) {
     console.log('Params ', params);
     let query = '';
+    if (params.q) {
+      query += `q=${encodeURIComponent(params.q)}&`;
+    }
     if (params.ship) {
-      query += `q=${encodeURIComponent(params.ship)}`;
+      query += `ship=${encodeURIComponent(params.ship)}&`;
     }
     let url = baseUrl;
     if (query) {

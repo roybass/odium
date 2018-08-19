@@ -1,6 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { Button, Input } from '@material-ui/core';
+import ShipSelect from './shipselect';
 
 const styles = theme => ({
   space: {
@@ -10,56 +11,71 @@ const styles = theme => ({
     display: 'flex',
     flexWrap: 'wrap',
   },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
+  input: {
+    marginLeft: 3 * theme.spacing.unit,
+    marginRight: 3 * theme.spacing.unit,
     width: 200,
   },
-  input: {
-    margin: theme.spacing.unit,
-  },
+
+  searchBtn: {
+    marginLeft: 3 * theme.spacing.unit,
+    marginRight: 3 * theme.spacing.unit,
+
+  }
 });
 
 class SearchForm extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {ship: ''};
-
-    this.handleChange = this.handleChange.bind(this);
+    this.state = {q: '', ship: ''};
   }
 
   handleClick() {
     if (this.props.onClick) {
-      this.props.onClick(this.state);
+      this.props.onClick({
+        q: this.state.q,
+        ship: this.state.ship.value
+      });
     }
   }
 
-  handleChange(event) {
+  handleShipChange = (selectedShip) => {
+    this.setState({
+      ship: selectedShip
+    })
+  };
+
+  handleTextChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
     });
     event.preventDefault();
-  }
+  };
 
   render() {
     const {classes} = this.props;
 
     return (
       <div className={classes.container}>
+
+        <span className={classes.space}/>
+        <ShipSelect {...this.props} onChange={this.handleShipChange} name="ship" value={this.state.ship} />
+
         <Input
-          name="ship"
+          name="q"
           className={classes.input}
           inputProps={{
             'aria-label': 'Description',
           }}
-          placeholder="Ship name"
-          onChange={this.handleChange}
+          placeholder="Search"
+          onChange={this.handleTextChange}
         />
-        <span className={classes.space}/>
-        <Button variant="outlined" color="primary" onClick={() => this.handleClick()} classes="">
+
+        <Button variant="outlined" color="primary" onClick={() => this.handleClick()} className={classes.searchBtn}>
           Search
         </Button>
+        <span className={classes.space}/>
       </div>
     )
   };

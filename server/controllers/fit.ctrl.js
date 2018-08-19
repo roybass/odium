@@ -6,10 +6,17 @@ class FitController {
 
   find(req, res, next) {
 
-    const search = req.query.q || '';
+    const query = {};
+
+    if (req.query.q) {
+      query['$text'] = { '$search' : req.query.q};
+    }
+    if (req.query.ship) {
+      query.ship = req.query.ship;
+    }
     const limit = req.query.limit || '10';
 
-    Fit.find({'$text' : {'$search' : search}}).limit(parseInt(limit)).exec((err, fit) => {
+    Fit.find(query).limit(parseInt(limit)).exec((err, fit) => {
       res.json(fit || err);
     });
   }

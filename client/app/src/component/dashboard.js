@@ -130,9 +130,6 @@ class Dashboard extends React.Component {
 
           <main className={classes.content}>
             <div className={classes.appBarSpacer}/>
-            <Typography variant="headline" gutterBottom>
-              Search
-            </Typography>
             <SearchForm onClick={this.handleSearch}/>
             <Typography variant="display1" gutterBottom>
               Fits

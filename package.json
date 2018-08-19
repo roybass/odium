@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node ./bin/www",
     "client": "cd client/app && npm start",
-    "dev": "concurrently --kill-others-on-fail \"PORT=5000 npm start\" \"npm run client\""
+    "nodemon": "node_modules/nodemon/bin/nodemon.js -w server",
+    "dev": "concurrently --kill-others-on-fail \"PORT=5000 npm run nodemon\" \"npm run client\""
   },
   "dependencies": {
     "body-parser": "~1.13.2",
@@ -24,6 +25,7 @@
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
-    "concurrently": "^3.6.1"
+    "concurrently": "^3.6.1",
+    "nodemon": "^1.18.3"
   }
 }
