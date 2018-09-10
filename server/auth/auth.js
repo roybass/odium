@@ -8,7 +8,7 @@ function ensureAuthenticated(req, res, next) {
     return next();
   }
 
-  res.redirect('/auth/login')
+  res.status(401).json({msg: 'Must be logged in'});
 }
 
 passport.serializeUser(function (user, done) {
@@ -41,9 +41,17 @@ function init(app) {
   app.use('/auth/login', passport.authenticate('eveonline-sso'));
   app.get('/auth/callback', passport.authenticate('eveonline-sso', {failureRedirect: '/error'}),
     function (req, res) {
-      // Successful authentication, redirect home.
-      res.redirect('/');
+      const from = req.query['state'];
+      console.log('Query params from callback', req.query);
+      if (from) {
+        res.redirect(from);
+      } else {
+        res.redirect('/');
+      }
     });
+  app.get('/auth/user', ensureAuthenticated, (req, res) => {
+    res.json(req.user);
+  });
 }
 
 module.exports = {

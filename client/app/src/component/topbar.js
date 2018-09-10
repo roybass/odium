@@ -1,13 +1,12 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import {Tooltip} from '@material-ui/core';
 import classNames from 'classnames';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import LoginIcon from '@material-ui/icons/SentimentDissatisfied';
+import Login from './Login';
 
 
 const drawerWidth = 200;
@@ -49,7 +48,7 @@ const styles = theme => ({
 class TopBar extends React.Component {
 
   render() {
-    const {classes} = this.props;
+    const { classes } = this.props;
     return (
       <AppBar position="absolute"
               className={classNames(classes.appBar, this.props.open && classes.appBarShift)}>
@@ -65,11 +64,9 @@ class TopBar extends React.Component {
           <Typography variant="title" color="inherit" noWrap className={classes.title}>
             Eve Fitting DB
           </Typography>
-          <Tooltip title="Login">
-            <IconButton color="inherit">
-              <LoginIcon />
-            </IconButton>
-          </Tooltip>
+
+          <Login/>
+
         </Toolbar>
       </AppBar>
     );

@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "client": "cd client/app && npm start",
+    "client:build": "cd client/app && npm run build",
     "nodemon": "node_modules/nodemon/bin/nodemon.js -w server",
     "dev": "concurrently --kill-others-on-fail \"PORT=5000 npm run nodemon\" \"npm run client\""
   },

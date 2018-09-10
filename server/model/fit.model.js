@@ -4,7 +4,7 @@ var schema = new mongoose.Schema({
   ship: String,
   name: String,
   fit: Array,
-  osid: Number,
+  osid: String,
   tags: Array
 });
 

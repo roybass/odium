@@ -1,6 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
-import ships from '../static/ships';
+import ships from '../../static/ships';
 import { withStyles } from '@material-ui/core/styles';
 
 

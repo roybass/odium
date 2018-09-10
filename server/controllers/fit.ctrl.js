@@ -14,9 +14,14 @@ class FitController {
     if (req.query.ship) {
       query.ship = req.query.ship;
     }
+    if (req.query.osid) {
+      query.osid = req.query.osid;
+    }
     const limit = req.query.limit || '10';
 
+    console.log('Query = ', query);
     Fit.find(query).limit(parseInt(limit)).exec((err, fit) => {
+      console.log('response = ', fit, err);
       res.json(fit || err);
     });
   }

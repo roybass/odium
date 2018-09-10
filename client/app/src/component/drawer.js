@@ -43,7 +43,7 @@ const styles = theme => ({
 
 class MyDrawer extends React.Component {
   render() {
-    const {classes} = this.props;
+    const { classes } = this.props;
 
     return (
       <Drawer variant="permanent"

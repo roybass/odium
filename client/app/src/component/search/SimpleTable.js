@@ -37,7 +37,7 @@ function SimpleTable(props) {
             return (
               <TableRow key={n.osid}>
                 <TableCell component="th" scope="row">
-                  {n.name}
+                  <a href={`/view/${n.osid}`}>{n.name}</a>
                 </TableCell>
                 <TableCell>{n.ship}</TableCell>
                 <TableCell>
