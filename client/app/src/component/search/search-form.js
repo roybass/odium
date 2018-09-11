@@ -10,6 +10,7 @@ const styles = theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
+    'justify-content' : 'center'
   },
   input: {
     marginLeft: 3 * theme.spacing.unit,
@@ -20,7 +21,6 @@ const styles = theme => ({
   searchBtn: {
     marginLeft: 3 * theme.spacing.unit,
     marginRight: 3 * theme.spacing.unit,
-
   }
 });
 
@@ -59,7 +59,6 @@ class SearchForm extends React.Component {
     return (
       <div className={classes.container}>
 
-        <span className={classes.space}/>
         <ShipSelect {...this.props} onChange={this.handleShipChange} name="ship" value={this.state.ship} />
 
         <Input
@@ -75,7 +74,6 @@ class SearchForm extends React.Component {
         <Button variant="outlined" color="primary" onClick={() => this.handleClick()} className={classes.searchBtn}>
           Search
         </Button>
-        <span className={classes.space}/>
       </div>
     )
   };

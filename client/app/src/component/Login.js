@@ -26,7 +26,6 @@ class Login extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     if (this.state.user !== null) {
       return (<span>{this.state.user.CharacterName}</span>);
     }

@@ -1,15 +1,19 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
 import Drawer from './drawer';
 import TopBar from './topbar';
 import Search from './search';
 import View from './view';
+import history from './history';
 
 const styles = theme => ({
   root: {
     display: 'flex',
+  },
+  main: {
+    width: '100%'
   }
 });
 
@@ -41,13 +45,13 @@ class Dashboard extends React.Component {
 
           <Drawer open={this.state.open} onClose={this.handleDrawerClose}/>
 
-          <BrowserRouter>
-            <div>
+          <Router history={history}>
+            <div className={classes.main}>
               <Route exact path="/" component={Search}/>
               <Route path="/search" component={Search}/>
               <Route path="/view/:osid" component={View}/>
             </div>
-          </BrowserRouter>
+          </Router>
 
         </div>
       </React.Fragment>

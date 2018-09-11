@@ -21,7 +21,7 @@ class FitController {
 
     console.log('Query = ', query);
     Fit.find(query).limit(parseInt(limit)).exec((err, fit) => {
-      console.log('response = ', fit, err);
+      // console.log('response = ', fit, err);
       res.json(fit || err);
     });
   }

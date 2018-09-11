@@ -15,7 +15,6 @@ const styles = {
 
 
 function SimpleTable(props) {
-  console.log('props', props);
   const {classes, data} = props;
 
   if (!data || !data.length) {
