@@ -1,6 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { Chip } from '@material-ui/core';
+import { Chip, TextField } from '@material-ui/core';
 import fitService from '../../service/fit-service';
 
 const styles = theme => ({
@@ -21,6 +21,9 @@ class Main extends React.Component {
     this.state = {
       fit: null
     };
+  }
+
+  componentDidMount() {
     this.updateFit();
   }
 
@@ -38,6 +41,10 @@ class Main extends React.Component {
       return;
     }
     this.setState({ fit: fit[0] });
+  }
+
+  displayModules(modules) {
+    return modules.map(this.displayModule).join("\n");
   }
 
   displayModule(module) {
@@ -73,9 +80,11 @@ class Main extends React.Component {
           return (<Chip className={classes.chip} label={tag}/>);
         })}
 
-        {fit.fit.map(mod => {
-          return (<div>{this.displayModule(mod)}</div>);
-        })}
+        <div>
+          <TextField multiline="true" fullWidth="true" autoFocu="true" value={this.displayModules(fit.fit)}/>
+        </div>
+
+
 
       </main>
     );

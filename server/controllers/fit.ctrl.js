@@ -3,18 +3,17 @@ const Fit = require('../model/fit.model');
 
 class FitController {
 
-
   find(req, res, next) {
 
     const query = {};
 
-    if (req.query.q) {
-      query['$text'] = { '$search' : req.query.q};
+    if (req.query.q) { // Free text search
+      query['$text'] = { '$search': req.query.q };
     }
-    if (req.query.ship) {
+    if (req.query.ship) { // Ship selection, usually from UI
       query.ship = req.query.ship;
     }
-    if (req.query.osid) {
+    if (req.query.osid) { // Specific fit - usually when viewing a single fit.
       query.osid = req.query.osid;
     }
     const limit = req.query.limit || '10';

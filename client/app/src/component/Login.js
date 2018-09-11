@@ -27,7 +27,7 @@ class Login extends React.Component {
 
   render() {
     if (this.state.user !== null) {
-      return (<span>{this.state.user.CharacterName}</span>);
+      return (<img src={"https://image.eveonline.com/Character/" + this.state.user.CharacterID + "_64.jpg"}/>);
     }
     return (
       <Tooltip title="Login">
