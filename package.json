@@ -21,6 +21,7 @@
     "js-yaml": "^3.12.0",
     "mongoose": "^5.2.6",
     "morgan": "~1.6.1",
+    "node-fetch": "^2.2.0",
     "passport": "^0.4.0",
     "passport-eveonline-sso": "github:eve-scout/passport-eveonline-sso",
     "serve-favicon": "~2.3.0"

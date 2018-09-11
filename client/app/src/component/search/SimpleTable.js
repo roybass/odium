@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import numeral from 'numeral';
+
 import {Table, TableBody, TableCell, TableHead, TableRow, Paper, Chip } from '@material-ui/core';
 
 const styles = {
@@ -28,23 +30,25 @@ function SimpleTable(props) {
             <TableCell>Fit Name</TableCell>
             <TableCell>Ship</TableCell>
             <TableCell>Tags</TableCell>
+            <TableCell>Buy Price</TableCell>
             <TableCell numeric>Modules</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {data.map(n => {
             return (
-              <TableRow key={n.osid}>
+              <TableRow key={n.fit.osid}>
                 <TableCell component="th" scope="row">
-                  <a href={`/view/${n.osid}`}>{n.name}</a>
+                  <a href={`/view/${n.fit.osid}`}>{n.fit.name}</a>
                 </TableCell>
-                <TableCell>{n.ship}</TableCell>
+                <TableCell>{n.fit.ship}</TableCell>
                 <TableCell>
-                  {n.tags.map(tag => {
+                  {n.fit.tags.map(tag => {
                     return (<Chip label={tag} />);
                   })}
                 </TableCell>
-                <TableCell numeric>{n.fit.length}</TableCell>
+                <TableCell>{numeral(n.appr.buy).format('0.0 a')}</TableCell>
+                <TableCell numeric>{n.fit.fit.length}</TableCell>
               </TableRow>
             );
           })}

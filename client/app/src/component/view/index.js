@@ -74,14 +74,14 @@ class Main extends React.Component {
     return (
       <main className={classes.content}>
         <div className={classes.appBarSpacer}/>
-        <h2>{fit.name}</h2>
-        <h3>Ship: {fit.ship}</h3>
-        {fit.tags.map(tag => {
+        <h2>{fit.fit.name}</h2>
+        <h3>Ship: {fit.fit.ship}</h3>
+        {fit.fit.tags.map(tag => {
           return (<Chip className={classes.chip} label={tag}/>);
         })}
 
         <div>
-          <TextField multiline="true" fullWidth="true" autoFocu="true" value={this.displayModules(fit.fit)}/>
+          <TextField multiline="true" fullWidth="true" autoFocu="true" value={this.displayModules(fit.fit.fit)}/>
         </div>
 
 
