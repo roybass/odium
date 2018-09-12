@@ -9668,10 +9668,6 @@ function skillDiff(characterSkills, items) {
       actual: actual[skill] || 0
     }
   }
-  console.log('requirements ', requirements);
-  console.log('actual ', actual);
-  console.log('diff ', diff);
-
   return diff;
 }
 

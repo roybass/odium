@@ -16,7 +16,6 @@ passport.serializeUser(function (user, done) {
 });
 
 passport.deserializeUser(function (obj, done) {
-  console.log('Deerializing user ', obj);
   done(null, obj);
 });
 
@@ -42,7 +41,6 @@ function init(app) {
   app.get('/auth/callback', passport.authenticate('eveonline-sso', {failureRedirect: '/error'}),
     function (req, res) {
       const from = req.query['state'];
-      console.log('Query params from callback', req.query);
       if (from) {
         res.redirect(from);
       } else {

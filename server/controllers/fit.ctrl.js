@@ -26,7 +26,6 @@ class FitController {
 
 
     Fit.find(query).limit(parseInt(limit)).exec(async (err, fits) => {
-      // console.log('response = ', fit, err);
       if (err) {
         res.status(500).send(err.message);
         return;
@@ -50,7 +49,6 @@ class FitController {
   }
 
   getSkillsDiff(userSkills, fit) {
-    console.log('Fit = ', fit);
     const items = fit.fit.map(f => f.id);
     return skillReqService.skillDiff(userSkills, items);
   }
