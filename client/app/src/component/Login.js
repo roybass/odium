@@ -27,11 +27,11 @@ class Login extends React.Component {
 
   render() {
     if (this.state.user !== null) {
-      return (<img src={"https://image.eveonline.com/Character/" + this.state.user.CharacterID + "_64.jpg"}/>);
+      return (<img alt='Logged In' src={"https://image.eveonline.com/Character/" + this.state.user.profile.CharacterID + "_64.jpg"}/>);
     }
     return (
       <Tooltip title="Login">
-        <IconButton color="inherit" href="/auth/login?state=fit">
+        <IconButton color="inherit" href="/auth/login">
           <LoginIcon />
         </IconButton>
       </Tooltip>

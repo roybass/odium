@@ -9624,10 +9624,12 @@ function pushRequirements(arrToPush, attArr, skillAttId, levelAttId) {
 }
 
 
-function getUniqueRequirements(type) {
-  const reqTree = getRequirementsTree(type);
+function getUniqueRequirements(types) {
   const r = {};
-  addUniqueRequirement(r, reqTree);
+  for (let type of types) {
+    const reqTree = getRequirementsTree(type);
+    addUniqueRequirement(r, reqTree);
+  }
   return r;
 }
 
@@ -9646,10 +9648,38 @@ function addUniqueRequirement(r, reqArr) {
   }
 }
 
-// console.log(JSON.stringify(getRequirementsTree(11999), null, 2));
-// console.log(JSON.stringify(getUniqueRequirements(11999), null, 2));
+function skillDiff(characterSkills, items) {
+  const requirements = getUniqueRequirements(items);
+  const actual = {};
+  characterSkills.skills.forEach(skill => {
+    actual[skill.skill_id] = skill.active_skill_level;
+  });
+
+  const diff = {};
+  for (let skill in requirements) {
+    if (!requirements.hasOwnProperty(skill)) {
+      continue;
+    }
+    if (actual[skill] && actual[skill] >= requirements[skill]) {
+      continue;
+    }
+    diff[skill] = {
+      required: requirements[skill],
+      actual: actual[skill] || 0
+    }
+  }
+  console.log('requirements ', requirements);
+  console.log('actual ', actual);
+  console.log('diff ', diff);
+
+  return diff;
+}
+
+
+// console.log(JSON.stringify(getUniqueRequirements([11999, 11269]), null, 2));
 
 module.exports = {
   getRequirementsTree,
-  getUniqueRequirements
+  getUniqueRequirements,
+  skillDiff
 };

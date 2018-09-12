@@ -29,7 +29,7 @@ passport.use(new EveOnlineSsoStrategy({
   function (accessToken, refreshToken, profile, done) {
     // We have a new authed session, you can now store and/or use the accessToken
     // and refreshToken to call EVE Swagger Interface (ESI) end points
-    return done(null, profile);
+    return done(null, {accessToken, profile});
   }
 ));
 
